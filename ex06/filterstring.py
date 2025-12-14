@@ -4,22 +4,27 @@ from ft_filter import ft_filter
 
 def main():
     try:
-        assert len(sys.argv) == 3
+        if len(sys.argv) != 3:
+            raise ValueError("invalid number of arguments")
 
         s = sys.argv[1]
-        n = int(sys.argv[2])
+        try:
+            n = int(sys.argv[2])
+        except ValueError:
+            raise ValueError("second argument must be an integer")
 
-        assert isinstance(s, str)
-
+        if not isinstance(s, str):
+            raise ValueError("first argument must be a string")
         words = s.split()
+
         result = list(
             ft_filter(lambda word: len(word) > n, words)
         )
 
         print(result)
 
-    except Exception:
-        print("AssertionError: the arguments are bad")
+    except ValueError as e:
+        print(f"AssertionError: {e}")
 
 
 if __name__ == "__main__":
