@@ -1,5 +1,4 @@
 def all_thing_is_obj(object: any) -> int:
-    """Print a human-readable description for the received object."""
     if isinstance(object, list):
         print("List :", type(object))
     elif isinstance(object, tuple):
