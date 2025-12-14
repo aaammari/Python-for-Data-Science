@@ -2,8 +2,14 @@ import sys
 import string
 
 
-def count_text_characters(text: str) -> tuple[int, int, int, int, int, int]:
-    """Return totals for the formatted output in this exercise."""
+def count_text_characters(text: str):
+    """
+        Count various types of characters in the provided text.
+        Args:
+            text (str): The text to analyze.
+        Returns:
+        print: A number of various types of characters.
+    """
     upper = lower = punctuation = spaces = digits = 0
     for char in text:
         if char.isupper():
@@ -14,10 +20,14 @@ def count_text_characters(text: str) -> tuple[int, int, int, int, int, int]:
             digits += 1
         elif char in string.punctuation:
             punctuation += 1
-        if char == " " or char == "\n" or char == "\r":
+        if char.isspace():
             spaces += 1
-    return len(text), upper, lower, punctuation, spaces, digits
-
+    print(f"The text contains {len(text)} characters:")
+    print(f"{upper} upper letters")
+    print(f"{lower} lower letters")
+    print(f"{punctuation} punctuation marks")
+    print(f"{spaces} spaces")
+    print(f"{digits} digits")
 
 
 def prompt_text() -> str:
@@ -44,13 +54,7 @@ def main(argv=None):
     else:
         text = prompt_text()
 
-    total_chars, upper, lower, punctuation, spaces, digits = count_text_characters(text)
-    print(f"The text contains {total_chars} characters:")
-    print(f"{upper} upper letters")
-    print(f"{lower} lower letters")
-    print(f"{punctuation} punctuation marks")
-    print(f"{spaces} spaces")
-    print(f"{digits} digits")
+    count_text_characters(text)
 
 
 if __name__ == "__main__":
